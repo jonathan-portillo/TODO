@@ -14,6 +14,7 @@ router.post("/register", async (req, res, next) => {
       const rounds = process.env.BCRYPT_ROUNDS || 8;
       const hash = bcrypt.hashSync(cred.password, rounds);
       cred.password = hash;
+      const user = await users.add(cred);
       const token = generateToken(user);
       req.status(201).json({ data: `id ${user.id}`, cred, token });
     } else {
@@ -24,3 +25,5 @@ router.post("/register", async (req, res, next) => {
     res.status(500).json({ message: "Username is already taken" });
   }
 });
+
+module.exports = router;
