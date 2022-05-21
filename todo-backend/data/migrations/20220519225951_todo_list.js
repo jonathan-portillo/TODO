@@ -3,7 +3,7 @@ exports.up = function (knex) {
     .createTable("users", (tbl) => {
       tbl.increments();
       tbl.string("username", 128).notNullable().unique().index();
-      tbl.string("password", 129).notNullable().index();
+      tbl.string("password", 256).notNullable().index();
     })
     .createTable("todo_title", (tbl) => {
       tbl.increments();
@@ -16,7 +16,7 @@ exports.up = function (knex) {
         .onUpdate("CASCADE");
     })
     .createTable("todo_list", (tbl) => {
-      tbl.integer();
+      tbl.increments();
       tbl
         .string("todo_list", 300)
         .references("todo_title.id")
@@ -25,9 +25,10 @@ exports.up = function (knex) {
         .onUpdate("CASCADE");
     })
     .createTable("description", (tbl) => {
-      tbl.integer();
+      tbl.increments();
       tbl
         .string("description", 2000)
+        .references("todo_list.id")
         .notNullable()
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
