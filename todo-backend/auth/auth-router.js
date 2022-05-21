@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secret = require("./config/secret");
 const { isValid } = require("../middleware/valid");
@@ -12,11 +12,11 @@ router.post("/register", async (req, res, next) => {
   try {
     if (isValid(cred)) {
       const rounds = process.env.BCRYPT_ROUNDS || 8;
-      const hash = bcrypt.hashSync(cred.password, rounds);
+      const hash = bcryptjs.hashSync(cred.password, rounds);
       cred.password = hash;
       const user = await users.add(cred);
       const token = generateToken(user);
-      req.status(201).json({ data: `id ${user.id}`, cred, token });
+      res.status(201).json({ data: `id ${user.id}`, cred, token });
     } else {
       res.status(400).json({ message: "username or password is missing" });
     }
@@ -25,5 +25,14 @@ router.post("/register", async (req, res, next) => {
     res.status(500).json({ message: "Username is already taken" });
   }
 });
+
+const generateToken = (user) => {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+  };
+  const options = { expiresIn: "1d" };
+  return jwt.sign(payload, secret.jwtSecret, options);
+};
 
 module.exports = router;
