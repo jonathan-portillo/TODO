@@ -7,7 +7,7 @@ module.exports = {
   findTitleById,
   addTitle,
   // updateTitle,
-  // deleteTodoList,
+  deleteTodoList,
 };
 
 //find all Note Titles
@@ -26,7 +26,7 @@ async function findTitleByUser(id) {
     const title = await db("todo_title as tt")
       .join("users as u", "u.id", "tt.user_id")
       .where({ "tt.user_id": id })
-      .select("tt.id", "u.username", "tt.todo_title");
+      .select("tt.id", "u.username", "tt.todo_title", "tt.user_id");
     return title;
   } catch (err) {
     throw err;
@@ -37,4 +37,10 @@ async function findTitleByUser(id) {
 async function addTitle(newTitle) {
   const [id] = await db("todo_title").insert(newTitle, "id");
   return findTitleById(id);
+}
+
+//delete todo list
+
+function deleteTodoList(id) {
+  return db("todo_title").del().where({ id });
 }
