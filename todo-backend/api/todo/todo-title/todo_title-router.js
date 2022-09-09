@@ -14,8 +14,20 @@ router.get("/", (req, res) => {
     });
 });
 
-//create a todo list that is tied to the user_id
+//get todo title based on user_id
+router.get("/:id/user", (req, res) => {
+  title
+    .findTitleByUser(req.params.id)
+    .then((userTitle) => {
+      res.status(200).json(userTitle);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
+//create a todo list that is tied to the user_id
 router.post("/:id", (req, res) => {
   const newTodoTitle = {
     user_id: req.params.id,
