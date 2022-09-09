@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 //get todo title based on user_id
-router.get("/:id/user", (req, res) => {
+router.get("/user/:id", (req, res) => {
   title
     .findTitleByUser(req.params.id)
     .then((userTitle) => {
@@ -27,8 +27,21 @@ router.get("/:id/user", (req, res) => {
     });
 });
 
+//get todo based on titleid
+router.get("/:id", (req, res) => {
+  const titleId = req.params.id;
+  title
+    .findTitleById(titleId)
+    .then((title) => {
+      res.status(200).json(title);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 //create a todo list that is tied to the user_id
-router.post("/:id", (req, res) => {
+router.post("/user/:id/", (req, res) => {
   const newTodoTitle = {
     user_id: req.params.id,
     todo_title: req.body.todo_title,
@@ -43,5 +56,9 @@ router.post("/:id", (req, res) => {
       res.status(400).json({ message: "Problem creating a todolist title" });
     });
 });
+
+//update the todo list title
+
+//delete the todo list
 
 module.exports = router;
