@@ -60,5 +60,9 @@ router.post("/user/:id/", (req, res) => {
 //update the todo list title
 
 //delete the todo list
-
+router.delete("/:id", (req, res) => {
+  title.deleteTodoList(req.params.id).then(() => {
+    res.status(200).json({ message: "Todo List deleted!!!" });
+  });
+});
 module.exports = router;
