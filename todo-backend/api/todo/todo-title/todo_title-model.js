@@ -6,7 +6,7 @@ module.exports = {
   findTitleByUser,
   findTitleById,
   addTitle,
-  // updateTitle,
+  updateTitle,
   deleteTodoList,
 };
 
@@ -37,6 +37,12 @@ async function findTitleByUser(id) {
 async function addTitle(newTitle) {
   const [id] = await db("todo_title").insert(newTitle, "id");
   return findTitleById(id);
+}
+
+//update todo Title
+
+function updateTitle(changes, id) {
+  return db("todo_title").where({ id }).update(changes);
 }
 
 //delete todo list
