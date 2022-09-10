@@ -59,6 +59,24 @@ router.post("/user/:id/", (req, res) => {
 
 //update the todo list title
 
+router.put("/:id", (req, res) => {
+  const updatedTitle = {
+    todo_title: req.body.todo_title,
+  };
+  title
+    .updateTitle(req.body, req.params.id)
+    .then(() => {
+      res.status(201).json({
+        message: `Your new Title is updated `,
+        updatedTitle,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json({ message: "Problem updating title" });
+    });
+});
+
 //delete the todo list
 router.delete("/:id", (req, res) => {
   title.deleteTodoList(req.params.id).then(() => {
