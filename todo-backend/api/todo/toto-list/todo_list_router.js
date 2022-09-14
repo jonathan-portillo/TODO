@@ -34,4 +34,29 @@ router.post("/:id/todo_title", (req, res) => {
     });
 });
 
+//update todo list
+router.put("/:id", (req, res) => {
+  const updatedTodoList = {
+    todo_list: req.body.todo_list,
+  };
+  todoList
+    .updateTodoList(req.body, req.params.id)
+    .then(() => {
+      res.status(201).json({
+        message: `Your todo list has been updated`,
+        updatedTodoList,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(400).json({ message: "Problem updating todo list" });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  todoList.deleteTodo(req.params.id).then(() => {
+    res.status(200).json({ message: "Your to do has been deleted" });
+  });
+});
+
 module.exports = router;
