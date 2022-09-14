@@ -4,8 +4,8 @@ module.exports = {
   findAllTodoList,
   findTodoListById,
   addTodoList,
-  // updateTodoList,
-  // deleteTodoList
+  updateTodoList,
+  deleteTodo,
 };
 
 function findAllTodoList() {
@@ -19,4 +19,12 @@ function findTodoListById(id) {
 async function addTodoList(newTodoList) {
   const [id] = await db("todo_list").insert(newTodoList, "id");
   return findTodoListById(id);
+}
+
+function updateTodoList(changes, id) {
+  return db("todo_list").where({ id }).update(changes);
+}
+
+function deleteTodo(id) {
+  return db("todo_list").del().where({ id });
 }
