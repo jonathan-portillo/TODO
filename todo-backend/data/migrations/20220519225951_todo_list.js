@@ -17,21 +17,23 @@ exports.up = function (knex) {
     })
     .createTable("todo_list", (tbl) => {
       tbl.increments();
-      tbl
-        .string("todo_list", 300)
-        .references("todo_title.id")
-        .notNullable()
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
+      tbl.string("todo_list", 300),
+        tbl
+          .integer("todo_title_id")
+          .references("todo_title.id")
+          .notNullable()
+          .onDelete("CASCADE")
+          .onUpdate("CASCADE");
     })
     .createTable("description", (tbl) => {
       tbl.increments();
-      tbl
-        .string("description", 2000)
-        .references("todo_list.id")
-        .notNullable()
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
+      tbl.string("description", 2000),
+        tbl
+          .integer("todo_list_id")
+          .references("todo_list.id")
+          .notNullable()
+          .onDelete("CASCADE")
+          .onUpdate("CASCADE");
     });
 };
 
