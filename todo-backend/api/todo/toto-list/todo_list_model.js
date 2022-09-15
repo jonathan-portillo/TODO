@@ -3,6 +3,7 @@ const db = require("../../../data/db-config");
 module.exports = {
   findAllTodoList,
   findTodoListById,
+  findTodoListByTitleId,
   addTodoList,
   updateTodoList,
   deleteTodo,
