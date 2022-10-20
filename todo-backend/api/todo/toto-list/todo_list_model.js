@@ -9,10 +9,12 @@ module.exports = {
   deleteTodo,
 };
 
+// find all the todoLists
 function findAllTodoList() {
   return db("todo_list");
 }
 
+//find todolist by the id
 function findTodoListById(id) {
   return db("todo_list").where({ id }).first();
 }
