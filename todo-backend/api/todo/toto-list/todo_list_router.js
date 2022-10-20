@@ -27,6 +27,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get("/:id/title", (req, res) => {
+  todoList
+    .findTodoListByTitleId(req.params.id)
+    .then((title) => {
+      res.status(200).json(title);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
+
 //create a todo list that is tied to the todoTitle_id
 router.post("/:id/todo_title", (req, res) => {
   const newTodoList = {
