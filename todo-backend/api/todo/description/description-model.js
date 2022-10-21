@@ -2,7 +2,7 @@ const db = require("../../../data/db-config");
 
 module.exports = {
   find,
-  //   findDescriptionByList,
+  findDescriptionByList,
   findDescriptionById,
   addDescription,
   updateDescription,
@@ -12,6 +12,18 @@ module.exports = {
 //find all description to lists
 function find() {
   return db("description");
+}
+
+async function findDescriptionByList(id) {
+  try {
+    const description = await db("description as d")
+      .join("todo_list as tl", "tl.id", "d.todo_list_id")
+      .where({ "d.todo_list_id": id })
+      .select("d.id", "d.description", "tl.todo_list", "d.todo_list_id");
+    return description;
+  } catch (err) {
+    throw err;
+  }
 }
 
 //find description by Id
@@ -27,7 +39,7 @@ async function addDescription(newDescription) {
 
 //update description
 function updateDescription(changes, id) {
-  return db("description").where([id]).update(changes);
+  return db("description").where({ id }).update(changes);
 }
 
 //delete description
