@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
     <div>
       <p>Life is rough so lets GetItDone</p>
-      <p>Sign Up!</p>
+
+      <Link to="/signup">
+        <p>Sign Up!</p>
+      </Link>
+
       <p>Already have an account?</p>
-      <p>Log In! </p>
+      <Link to="/login">
+        <p>Log In! </p>
+      </Link>
     </div>
   );
 };
