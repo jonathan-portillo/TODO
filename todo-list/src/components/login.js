@@ -19,9 +19,7 @@ const Login = () => {
   };
   return (
     <>
-      <div> Log in </div>
-
-      <form onSubmit={handleSubmit}>
+      <form className="loggingin" onSubmit={handleSubmit}>
         <label htmlFor="username">
           Username:
           <input

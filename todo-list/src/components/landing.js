@@ -1,23 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Login from "./login";
 
 const Landing = () => {
   return (
     <>
-      <div className="navbarhome">
+      <header className="navbarhome">
         <Link to="/about">About</Link>
-      </div>
-      <div>
-        <p>Life is rough so lets GetItDone</p>
+      </header>
+      <div className="homebox">
+        <div className="mottobox">
+          <p className="thatsthemotto">Task Notes</p>
+          <p className="thatsthemotto2">Empower your productivity</p>
+        </div>
 
-        <Link to="/signup">
-          <p>Sign Up!</p>
-        </Link>
+        <div className="loginlanding">
+          <Login />
+          <Link to="/signup">
+            <p>Sign Up!</p>
+          </Link>
 
-        <p>Already have an account?</p>
-        <Link to="/login">
-          <p>Log In! </p>
-        </Link>
+          {/* <p class="accountexists">Already have an account?</p>
+          <Link to="/login">
+            <p>Log In! </p>
+          </Link> */}
+        </div>
       </div>
     </>
   );
