@@ -1,6 +1,6 @@
-* {
+/* * {
   border: 1px solid black;
-}
+} */
 
 a {
   text-decoration: none;
@@ -12,7 +12,7 @@ p {
 }
 
 body {
-  /* background-image: url("./assets/pexels-ekaterina-bolovtsova-6193091.jpg"); */
+  background-image: url("./assets/pexels-ekaterina-bolovtsova-6193091.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -58,4 +58,34 @@ body {
 .loggingin {
   display: flex;
   flex-direction: column;
+  align-content: center;
+  padding: 5% 0 0 0;
+}
+
+.loginbox {
+  width: 20%;
+  margin-left: 40%;
+  align-content: center;
+}
+
+.loginlanding {
+  padding: 10% 0 0 5%;
+}
+
+.loginboxlanding {
+  width: 100%;
+  padding: 10% 30% 30% 30%;
+}
+
+.avatar {
+  width: 100%;
+  justify-content: center;
+  padding-left: 35%;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
+.linktosign {
+  padding-top: 5%;
+  font-size: 0.8rem;
 }

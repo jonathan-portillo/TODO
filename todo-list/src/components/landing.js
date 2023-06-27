@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Login from "./login";
+import { Button } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import LockedOutIcon from "@mui/icons-material/Assignment";
+import { Avatar } from "@mui/material";
 
 const Landing = () => {
   return (
@@ -15,15 +19,18 @@ const Landing = () => {
         </div>
 
         <div className="loginlanding">
-          <Login />
-          <Link to="/signup">
-            <p>Sign Up!</p>
-          </Link>
-
-          {/* <p class="accountexists">Already have an account?</p>
-          <Link to="/login">
-            <p>Log In! </p>
-          </Link> */}
+          <Paper className="loginboxlanding">
+            <div className="avatar">
+              <Avatar
+                sx={{ bgcolor: "607d8b"[500], width: 56, height: 56 }}
+                variant="round"
+              >
+                <LockedOutIcon />
+              </Avatar>
+            </div>
+            <p>Welcome Back!</p>
+            <Login />
+          </Paper>
         </div>
       </div>
     </>
